@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+require "C:\\Projects\\LaravelCourc\\test-project\\functions\\Gpt.php";
 use Illuminate\Http\Request;
+
+
 
 class TaskController extends Controller
 {
     public function index(){
         $tasks = Task::all();
+        for ($i = 0; $i < count($tasks); $i++) {
+            $tasks[$i]['tip'] = Gpt::getRespones($tasks[$i]['task']);
+        }
         return view('todo', ['tasks'=>$tasks]);
     }
 

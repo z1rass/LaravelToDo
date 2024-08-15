@@ -15,11 +15,13 @@
         <ul class="space-y-4">
             <!-- Пример задачи -->
             @foreach($tasks as $task)
-                <li class="flex items-center justify-between">
+                <li class="flex flex-col space-y-1">
                     <label class="flex items-center space-x-2">
                         <input type="checkbox" name="completed_tasks[]" value="{{ $task->id }}" class="form-checkbox h-5 w-5 text-indigo-600">
                         <span class="text-gray-700">{{$task->task}}</span>
                     </label>
+                    <p class="text-gray-500">{{$task->tip}}</p>
+                    <p> </p>
                 </li>
             @endforeach
         </ul>
