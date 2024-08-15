@@ -12,9 +12,9 @@ class TaskController extends Controller
 {
     public function index(){
         $tasks = Task::all();
-        for ($i = 0; $i < count($tasks); $i++) {
-            $tasks[$i]['tip'] = Gpt::getRespones($tasks[$i]['task']);
-        }
+//        for ($i = 0; $i < count($tasks); $i++) {
+//            $tasks[$i]['tip'] = Gpt::getRespones($tasks[$i]['task']);
+//        }
         return view('todo', ['tasks'=>$tasks]);
     }
 
@@ -27,6 +27,7 @@ class TaskController extends Controller
         ]);
 
         $task = new Task();
+        $task['tip'] = Gpt::getRespones($validated['task']);
         $task->task = $validated['task'];
         $task->save();
         return redirect('/todo');
